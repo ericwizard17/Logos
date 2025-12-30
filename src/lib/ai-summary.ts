@@ -1,10 +1,15 @@
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
+// Make OpenAI optional - won't break build if API key is missing
+const openai = process.env.OPENAI_API_KEY
+    ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+    : null;
 
 export async function generateBookSummary(bookTitle: string, author: string): Promise<string> {
+    if (!openai) {
+        return 'AI summaries are currently unavailable. Please configure OPENAI_API_KEY.';
+    }
+
     try {
         const response = await openai.chat.completions.create({
             model: 'gpt-4o-mini',
@@ -41,6 +46,10 @@ export async function generateProgressSummary(
     currentPage: number,
     totalPages: number
 ): Promise<string> {
+    if (!openai) {
+        return 'AI summaries are currently unavailable. Please configure OPENAI_API_KEY.';
+    }
+
     try {
         const percentage = Math.round((currentPage / totalPages) * 100);
 
