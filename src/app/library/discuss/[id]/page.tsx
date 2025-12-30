@@ -22,7 +22,7 @@ export default function DiscussPage() {
     const params = useParams();
     const router = useRouter();
     const [userPage, setUserPage] = useState(0);
-    const [bookTitle, setBookTitle] = useState('Loading Volume...');
+    const [bookTitle, setBookTitle] = useState('');
     const [newComment, setNewComment] = useState('');
     const [localComments, setLocalComments] = useState<Comment[]>([]);
     const [userFlag, setUserFlag] = useState('Ω');
@@ -200,7 +200,22 @@ export default function DiscussPage() {
     if (loading) {
         return (
             <div className={styles.container}>
-                <p>Loading discussion...</p>
+                <p>{t('loading_discussion')}</p>
+            </div>
+        );
+    }
+
+    if (!bookTitle) {
+        return (
+            <div className={styles.container}>
+                <header className={styles.header}>
+                    <button onClick={() => router.push('/library')} className={styles.backBtn}>
+                        {t('back_to_library')}
+                    </button>
+                </header>
+                <div className={styles.content} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+                    <p className="serif">{t('book_not_found')}</p>
+                </div>
             </div>
         );
     }
@@ -209,7 +224,7 @@ export default function DiscussPage() {
         <div className={styles.container}>
             <header className={styles.header}>
                 <button onClick={() => router.push('/library')} className={styles.backBtn}>
-                    ← Back to Library
+                    {t('back_to_library')}
                 </button>
             </header>
 
@@ -220,7 +235,7 @@ export default function DiscussPage() {
                             onClick={() => setViewMode('flow')}
                             className={viewMode === 'flow' ? styles.toggleActive : styles.toggle}
                         >
-                            Timeline View
+                            {t('timeline_view')}
                         </button>
                         <button
                             onClick={() => setViewMode('chapter')}
@@ -245,13 +260,13 @@ export default function DiscussPage() {
 
                     <div className={`${styles.commentBox} card`}>
                         <textarea
-                            placeholder={`Share your thoughts at page ${userPage}...`}
+                            placeholder={`${t('share_thoughts')} ${userPage}...`}
                             value={newComment}
                             onChange={(e) => setNewComment(e.target.value)}
                             className={styles.textarea}
                         />
                         <button onClick={handlePostComment} className={styles.postBtn}>
-                            Post Insight
+                            {t('post_insight')}
                         </button>
                     </div>
                 </div>
@@ -262,8 +277,8 @@ export default function DiscussPage() {
                             {t('insight_text')}
                         </p>
                         <div className={styles.insightMeta}>
-                            <span className={styles.tag}>#Era: Late Modernity</span>
-                            <span className={styles.tag}>#Conflict: Individualism vs. Collectivism</span>
+                            <span className={styles.tag}>{t('era_tag')}</span>
+                            <span className={styles.tag}>{t('conflict_tag')}</span>
                         </div>
                     </div>
 
@@ -272,12 +287,12 @@ export default function DiscussPage() {
                         <div className={`${styles.pollinationCard} card`}>
                             <h4 className="serif">Critique of Pure Reason</h4>
                             <p>Discussing the boundaries of human knowledge in relation to {bookTitle}.</p>
-                            <span className={styles.activeLabel}>12 Scholars debating</span>
+                            <span className={styles.activeLabel}>12 {t('scholars_debating')}</span>
                         </div>
                         <div className={`${styles.pollinationCard} card`}>
                             <h4 className="serif">Being and Time</h4>
                             <p>Exploring existential themes parallel to this volume.</p>
-                            <span className={styles.activeLabel}>8 Scholars debating</span>
+                            <span className={styles.activeLabel}>8 {t('scholars_debating')}</span>
                         </div>
                     </div>
                 </aside>

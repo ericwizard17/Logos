@@ -152,7 +152,7 @@ export default function LibraryPage() {
     if (loading) {
         return (
             <div className={styles.container}>
-                <p>Loading your library...</p>
+                <p>{t('loading_library')}</p>
             </div>
         );
     }
@@ -163,7 +163,7 @@ export default function LibraryPage() {
             <aside className={styles.sidebar}>
                 <div className={styles.brand}>
                     <h2 className="serif gold-accent">LOGOS</h2>
-                    <p>The Curator's Desk</p>
+                    <p>{t('brand_subtitle')}</p>
                 </div>
                 <LanguageSwitcher />
                 <nav className={styles.nav}>
@@ -197,7 +197,7 @@ export default function LibraryPage() {
                 </div>
 
                 {/* Search Bar */}
-                <form onSubmit={handleSearch} className={styles.searchBar}>
+                <div className={styles.searchBar}>
                     <input
                         type="text"
                         placeholder={t('search_placeholder')}
@@ -206,14 +206,14 @@ export default function LibraryPage() {
                         className={styles.searchInput}
                     />
                     <button type="submit" className={styles.searchBtn} disabled={isSearching}>
-                        {isSearching ? 'Seeking...' : 'Seek'}
+                        {isSearching ? t('seeking') : t('seek_button')}
                     </button>
-                </form>
+                </div>
 
                 {/* Search Results */}
                 {searchResults.length > 0 && (
                     <section className={styles.searchResults}>
-                        <h3 className="serif">Discoveries</h3>
+                        <h3 className="serif">{t('discoveries')}</h3>
                         <div className={styles.resultsGrid}>
                             {searchResults.map(book => (
                                 <div key={book.id} className={`${styles.resultCard} card`}>
@@ -223,10 +223,10 @@ export default function LibraryPage() {
                                     <div className={styles.bookInfo}>
                                         <h4 className="serif">{book.title}</h4>
                                         <p className={styles.authors}>{book.authors.join(', ')}</p>
-                                        <p className={styles.pages}>{book.pageCount} pages</p>
+                                        <p className={styles.pages}>{book.pageCount} {t('pages_count')}</p>
                                     </div>
                                     <button onClick={() => addToLibrary(book)} className={styles.addBtn}>
-                                        + Add to Shelf
+                                        {t('add_to_shelf')}
                                     </button>
                                 </div>
                             ))}
@@ -250,12 +250,12 @@ export default function LibraryPage() {
                                     <h3 className="serif">
                                         {book.title}
                                         {(book as any).isCompleted && (
-                                            <span className={styles.completedBadge}>✓ Completed</span>
+                                            <span className={styles.completedBadge}>{t('completed_badge')}</span>
                                         )}
                                     </h3>
                                     <p className={styles.author}>{book.authors.join(', ')}</p>
                                     <div className={styles.progress}>
-                                        <label>Current Page:</label>
+                                        <label>{t('current_page_label')}</label>
                                         <input
                                             type="number"
                                             min="0"
@@ -268,13 +268,13 @@ export default function LibraryPage() {
                                     </div>
                                     <div className={styles.actions}>
                                         <button onClick={() => router.push(`/library/discuss/${book.supabaseId}`)} className={styles.discussBtn}>
-                                            Enter Symposium
+                                            {t('enter_symposium')}
                                         </button>
                                         <button
                                             onClick={() => toggleComplete(book.supabaseId!)}
                                             className={`${styles.completeBtn} ${(book as any).isCompleted ? styles.completeBtnActive : ''}`}
                                         >
-                                            {(book as any).isCompleted ? '✓ Completed' : 'Mark Complete'}
+                                            {(book as any).isCompleted ? t('mark_completed') : t('mark_complete')}
                                         </button>
                                     </div>
                                 </div>
