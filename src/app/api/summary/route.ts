@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateBookSummary, generateProgressSummary } from '@/lib/ai-summary';
 
 export async function POST(request: NextRequest) {
     try {
+        // Check if OpenAI is configured
+        if (!process.env.OPENAI_API_KEY) {
+            return NextResponse.json({
+                summary: 'AI summaries are currently unavailable. Please configure OPENAI_API_KEY in your environment variables.'
+            });
+        }
+
+        const { generateBookSummary, generateProgressSummary } = await import('@/lib/ai-summary');
         const { bookTitle, author, currentPage, totalPages, type } = await request.json();
 
         if (!bookTitle || !author) {
@@ -15,10 +22,8 @@ export async function POST(request: NextRequest) {
         let summary: string;
 
         if (type === 'full') {
-            // Genel özet
             summary = await generateBookSummary(bookTitle, author);
         } else {
-            // Okunan kısma kadar özet
             if (!currentPage || !totalPages) {
                 return NextResponse.json(
                     { error: 'Current page and total pages are required for progress summary' },
@@ -32,8 +37,8 @@ export async function POST(request: NextRequest) {
     } catch (error) {
         console.error('Error in summary API:', error);
         return NextResponse.json(
-            { error: 'Failed to generate summary' },
-            { status: 500 }
+            { summary: 'Unable to generate summary at this time.' },
+            { status: 200 }
         );
     }
 }
