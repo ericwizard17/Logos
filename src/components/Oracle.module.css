@@ -1,0 +1,102 @@
+.container {
+    padding: 3rem !important;
+    background-color: var(--background-shelf) !important;
+    color: var(--text-light);
+    border: 1px solid var(--accent) !important;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "Φ";
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 10rem;
+    opacity: 0.05;
+    font-family: var(--font-serif);
+}
+
+.oracleBadge {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.header h3 {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    color: var(--text-light);
+}
+
+.recContent {
+    margin-bottom: 3rem;
+}
+
+.bookInfo h4 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.author {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+}
+
+.reason {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0.7;
+    max-width: 500px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dots {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.dot,
+.dotActive {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0.2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dotActive {
+    opacity: 1;
+    background: var(--accent);
+    transform: scale(1.5);
+}
+
+.seekBtn {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.6rem 1.5rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.seekBtn:hover {
+    background: var(--accent);
+    color: var(--background-shelf);
+}

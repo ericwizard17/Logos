@@ -1,0 +1,95 @@
+.container {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 4rem;
+}
+
+.chapterNav {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tab,
+.activeTab {
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-left: 2px solid transparent;
+}
+
+.tab {
+    opacity: 0.4;
+}
+
+.activeTab {
+    opacity: 1;
+    border-left-color: var(--accent);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.chLabel {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+}
+
+.chTitle {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--primary);
+}
+
+.commentScope {
+    flex: 1;
+}
+
+.commentScope h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--primary);
+}
+
+.thread {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.comment {
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.user {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.page {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.empty {
+    font-style: italic;
+    color: var(--text-muted);
+    padding: 2rem;
+    text-align: center;
+}

@@ -1,0 +1,136 @@
+.container {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.buddyCard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.buddyInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: white;
+    position: relative;
+}
+
+.statusDot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--background-shelf);
+}
+
+.online {
+    background: #4caf50;
+}
+
+.reading {
+    background: var(--accent);
+    animation: pulse 2s infinite;
+}
+
+.offline {
+    background: #9e9e9e;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.activity {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.bookProgress {
+    padding-left: 2.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.bookTitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.miniBar {
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+.fill {
+    background: var(--accent);
+    height: 100%;
+}
+
+.pageText {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    opacity: 0.5;
+    text-align: right;
+}

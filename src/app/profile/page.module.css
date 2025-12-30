@@ -1,0 +1,512 @@
+.container {
+    min-height: 100vh;
+    background-color: var(--background-paper);
+}
+
+.header {
+    padding: 3rem 4rem;
+    background-color: var(--background-shelf);
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.backBtn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    border-radius: 1px;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+}
+
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logoutBtn {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logoutBtn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.profileHero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    background: var(--background-shelf);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+}
+
+.founderBadge {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    border: 2px solid #B8860B;
+}
+
+.userInfo h2 {
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nameRow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.premiumTag {
+    background: #B8860B;
+    color: white;
+    font-size: 0.6rem;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+
+.locationWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.locationWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.statusBadge {
+    font-size: 0.65rem;
+    color: #B8860B;
+    background: rgba(184, 134, 11, 0.05);
+    padding: 2px 8px;
+    border: 1px solid rgba(184, 134, 11, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.membershipCard {
+    background: white;
+    padding: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    margin-top: 2rem;
+}
+
+.membershipCard h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.standingGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.standingItem label {
+    display: block;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.standingItem p {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+.countryTag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: var(--background-shelf);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    opacity: 0.9;
+}
+
+.bio {
+    font-style: italic;
+    color: var(--text-muted);
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 4rem;
+}
+
+.statCard {
+    text-align: center;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.statCard h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.statValue {
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--text-main);
+    font-family: var(--font-serif);
+}
+
+.heatmapSection {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.heatmapSection h3 {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.intensitySummary {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.intensityBar {
+    width: 12px;
+    height: 40px;
+    background-color: var(--primary);
+    border-radius: 1px;
+}
+
+.heatmapNote {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.profileMeta {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.privacyToggle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+}
+
+.thoughtStyleSection {
+    text-align: center;
+}
+
+.thoughtStyleSection h3 {
+    margin-bottom: 2rem;
+    color: var(--text-muted);
+}
+
+.styleRadar {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.styleBar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    width: 200px;
+}
+
+.styleBar span {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+}
+
+.barOuter {
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.barInner {
+    height: 100%;
+    background: var(--accent);
+}
+
+.matchingSection {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 4rem;
+}
+
+.matchingSection h3 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.matchGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.matchCard {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.matchFlag {
+    font-size: 2rem;
+}
+
+.matchInfo {
+    flex: 1;
+}
+
+.matchInfo h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.matchInfo p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.connectBtn {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 0.5rem 1.5rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.connectBtn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.topShelfSection {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 4rem;
+}
+
+.sectionHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.sectionHeader h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.sectionHeader p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.topShelfGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.topBook {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    cursor: pointer;
+}
+
+.bookSpine {
+    width: 40px;
+    height: 180px;
+    background: linear-gradient(to right, var(--primary), var(--primary-light));
+    border-radius: 4px 2px 2px 4px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.topBook:hover .bookSpine {
+    transform: rotateY(-15deg) scale(1.05);
+}
+
+.topBook h4 {
+    font-size: 1rem;
+    max-width: 150px;
+}
+
+.shelfSection h3 {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.shelfGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.miniBookCard {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.miniBookCard:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.bookIcon {
+    font-size: 2rem;
+    opacity: 0.5;
+}
+
+.bookMeta h4 {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+}
+
+.bookMeta p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.emptyNote {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .statsGrid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}

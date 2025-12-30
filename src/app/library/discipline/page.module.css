@@ -1,0 +1,169 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background-paper);
+}
+
+.sidebar {
+    width: 280px;
+    background-color: var(--background-shelf);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.brand {
+    margin-bottom: 4rem;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.navItem,
+.navItemActive {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    text-align: left;
+    padding: 0.75rem 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    font-family: var(--font-sans);
+    text-decoration: none;
+}
+
+.navItemActive {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.content {
+    flex: 1;
+    padding: 4rem 6rem;
+}
+
+.header {
+    margin-bottom: 5rem;
+}
+
+.header h1 {
+    font-size: 3.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-style: italic;
+    color: var(--text-muted);
+    font-family: var(--font-serif);
+}
+
+.momentumCard {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding: 4rem !important;
+    background: white !important;
+    border: 1px solid rgba(0, 0, 0, 0.03) !important;
+}
+
+.inkwell {
+    width: 100px;
+    height: 120px;
+    border: 2px solid var(--primary);
+    border-radius: 8px 8px 20px 20px;
+    position: relative;
+    overflow: hidden;
+    background: #fdfdfd;
+}
+
+.ink {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--primary);
+    transition: height 1s ease-out;
+}
+
+.momentumInfo {
+    flex: 1;
+}
+
+.momentumInfo h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.progressBar {
+    height: 6px;
+    background: rgba(0, 0, 0, 0.05);
+    margin: 1.5rem 0;
+}
+
+.progressFill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 1s ease;
+}
+
+.goalText {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+.history {
+    margin-top: 6rem;
+}
+
+.history h3 {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-muted);
+}
+
+.streakGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1.5rem;
+}
+
+.day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    opacity: 0.3;
+}
+
+.activeDay {
+    opacity: 1;
+    border-color: var(--accent);
+    background: #fdfdfd;
+}
+
+.dayLabel {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.quillIcon {
+    font-size: 1.5rem;
+    color: var(--primary);
+}

@@ -1,0 +1,40 @@
+﻿.completeBtn {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+}
+
+.completeBtn:hover {
+    border-color: #4caf50;
+    color: #4caf50;
+}
+
+.completeBtnActive {
+    background: #4caf50;
+    color: white;
+    border-color: #4caf50;
+}
+
+.completeBtnActive:hover {
+    background: #45a049;
+}
+
+.completedBadge {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background: #4caf50;
+    color: white;
+    font-size: 0.7rem;
+    border-radius: 2px;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}

@@ -1,0 +1,530 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background-paper);
+}
+
+.sidebar {
+    width: 280px;
+    background-color: var(--background-shelf);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.brand {
+    margin-bottom: 4rem;
+}
+
+.brand h2 {
+    font-size: 2.2rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.25rem;
+}
+
+.brand p {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    opacity: 0.8;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.navItem,
+.navItemActive {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    text-align: left;
+    padding: 0.75rem 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    font-family: var(--font-sans);
+    text-decoration: none;
+}
+
+.navItemActive {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.navItem:hover {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+.content {
+    flex: 1;
+    padding: 4rem 6rem;
+    overflow-y: auto;
+}
+
+.titleArea {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.filterBar {
+    display: flex;
+    gap: 1rem;
+}
+
+.filterBtn,
+.filterBtnActive {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filterBtnActive {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.eventHeader {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.standingTag,
+.impromptuTag {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+}
+
+.standingTag {
+    color: #10b981;
+}
+
+.impromptuTag {
+    color: #f59e0b;
+}
+
+.eventDesc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 1rem 0;
+    line-height: 1.5;
+}
+
+.hostInfo {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.promptCard {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--background-shelf);
+    color: var(--text-light);
+    border-radius: 4px;
+    text-align: left;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.promptCard h5 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.viewToggleInner {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.viewToggleInner button {
+    background: transparent;
+    border: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    opacity: 0.4;
+}
+
+.viewToggleInner .activeView {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.scheduleList {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.scheduleItem {
+    display: grid;
+    grid-template-columns: 150px 1fr 100px;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    align-items: center;
+}
+
+.scheduleItem .day {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.scheduleItem .activity {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+}
+
+.scheduleItem .time {
+    text-align: right;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+.createForm {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.createForm h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.createForm p {
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: left;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.inputGroup label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+}
+
+.inputGroup input,
+.inputGroup select {
+    padding: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: white;
+    font-family: var(--font-sans);
+}
+
+.submitBtn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 1.25rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1rem;
+}
+
+.submitBtn:hover {
+    background: var(--accent);
+}
+
+.header {
+    margin-bottom: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.header h1 {
+    font-size: 3rem;
+    color: var(--primary);
+    font-weight: 400;
+}
+
+.chamberType {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.tabs {
+    display: flex;
+    gap: 2rem;
+}
+
+.tab,
+.tabActive {
+    background: transparent;
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    color: var(--text-muted);
+}
+
+.tabActive {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+.badges {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.premiumBadge {
+    background: #B8860B;
+    color: white;
+    font-size: 0.6rem;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+
+.premiumCard {
+    border: 1px solid rgba(184, 134, 11, 0.3) !important;
+    background: linear-gradient(to bottom right, white, rgba(184, 134, 11, 0.02)) !important;
+}
+
+.eventList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.eventCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem !important;
+    border: 1px solid rgba(0, 0, 0, 0.03) !important;
+}
+
+.eventInfo h4 {
+    font-size: 1.6rem;
+    margin: 0.5rem 0;
+}
+
+.liveBadge {
+    font-size: 0.7rem;
+    color: #ff4d4d;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+.scheduledBadge {
+    font-size: 0.7rem;
+    color: var(--accent);
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+.clubBadge {
+    font-size: 0.7rem;
+    color: #8b5cf6;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+.eventMeta {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.time {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+.attendees {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.actionBtn {
+    margin-top: 1rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.actionBtn:hover {
+    background: var(--primary-light);
+}
+
+/* Live Room UI */
+.activeChamber {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    padding: 4rem;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.chamberHeader h3 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.chamberHeader p {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.liveAudioUI {
+    margin: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.speakerGrid {
+    display: flex;
+    gap: 4rem;
+}
+
+.speaker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatarMini {
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.audioVisualize {
+    display: flex;
+    gap: 4px;
+    height: 40px;
+    align-items: center;
+}
+
+.bar {
+    width: 4px;
+    background: var(--accent);
+    animation: bounce 1s infinite alternate;
+}
+
+.bar:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.bar:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.bar:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+@keyframes bounce {
+    from {
+        height: 5px;
+    }
+
+    to {
+        height: 40px;
+    }
+}
+
+.chamberControls {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.micBtn,
+.requestBtn {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 1rem 2.5rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.requestBtn {
+    background: var(--primary);
+    color: white;
+}

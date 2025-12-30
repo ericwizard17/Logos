@@ -1,0 +1,337 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background-paper);
+}
+
+.sidebar {
+    width: 280px;
+    background-color: var(--background-shelf);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.brand {
+    margin-bottom: 4rem;
+}
+
+.brand h2 {
+    font-size: 2.2rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.25rem;
+    color: var(--text-light);
+}
+
+.brand p {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    opacity: 0.8;
+}
+
+.nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.navItem,
+.navItemActive {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    text-align: left;
+    padding: 0.75rem 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    font-family: var(--font-sans);
+    text-decoration: none;
+}
+
+.navItemActive {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.navItem:hover {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+.logout {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.logout:hover {
+    opacity: 1;
+    border-color: var(--primary);
+}
+
+.content {
+    flex: 1;
+    padding: 4rem 6rem;
+    overflow-y: auto;
+}
+
+.topActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+
+.header h1 {
+    font-size: 2rem;
+    color: var(--primary);
+    font-weight: 400;
+}
+
+.searchBar {
+    display: flex;
+    gap: 1rem;
+}
+
+.searchBar input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.75rem 0;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    width: 250px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.searchBar input:focus {
+    border-color: var(--primary);
+}
+
+.searchBar button {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 0.4rem 1.2rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+}
+
+.searchBar button:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.shelfGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 3rem;
+}
+
+.bookCard {
+    padding: 1.5rem !important;
+    border: 1px solid rgba(0, 0, 0, 0.03) !important;
+    box-shadow: none !important;
+    transition: all 0.4s ease;
+}
+
+.bookCard:hover {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    box-shadow: var(--shadow-subtle) !important;
+}
+
+.bookMain {
+    display: flex;
+    gap: 2rem;
+}
+
+.bookCover {
+    width: 90px;
+    height: 135px;
+    object-fit: cover;
+    border-radius: 1px;
+}
+
+.noCover {
+    width: 90px;
+    height: 135px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: #aaa;
+}
+
+.bookDetails {
+    flex: 1;
+}
+
+.bookDetails h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.bookAuthor {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.progressContainer {
+    margin-top: 2rem;
+}
+
+.progressBar {
+    height: 2px;
+    background: rgba(0, 0, 0, 0.05);
+    margin-bottom: 0.5rem;
+}
+
+.progressFill {
+    background: var(--primary);
+    height: 100%;
+}
+
+.progressText {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+}
+
+.updateArea {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.updateArea input {
+    width: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 0.3rem;
+    font-size: 0.8rem;
+    text-align: center;
+    outline: none;
+}
+
+.updateArea button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border-radius: 1px;
+}
+
+.searchResults {
+    position: absolute;
+    top: 10rem;
+    right: 6rem;
+    width: 400px;
+    z-index: 100;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1.5rem !important;
+}
+
+.scrollArea {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.searchItem {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f9f9f9;
+    align-items: center;
+}
+
+.miniCover {
+    width: 35px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.itemInfo h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.itemInfo p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.closeSearch {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: right;
+    cursor: pointer;
+}
+
+.empty {
+    padding: 10rem 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+@media (max-width: 1024px) {
+    .content {
+        padding: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 2rem;
+    }
+}

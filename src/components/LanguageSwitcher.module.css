@@ -1,0 +1,27 @@
+.container {
+    margin-bottom: 2rem;
+}
+
+.select {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    outline: none;
+    border-radius: 1px;
+    width: 100%;
+}
+
+.select option {
+    background: var(--background-shelf);
+    color: white;
+}
+
+.select:hover {
+    border-color: var(--accent);
+}

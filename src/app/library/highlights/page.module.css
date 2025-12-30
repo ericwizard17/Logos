@@ -1,0 +1,200 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background-paper);
+}
+
+.sidebar {
+    width: 280px;
+    background-color: var(--background-shelf);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.brand {
+    margin-bottom: 4rem;
+}
+
+.brand h2 {
+    font-size: 2.2rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.25rem;
+}
+
+.brand p {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    opacity: 0.8;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.navItem,
+.navItemActive {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    text-align: left;
+    padding: 0.75rem 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    font-family: var(--font-sans);
+    text-decoration: none;
+}
+
+.navItemActive {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.navItem:hover {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+.content {
+    flex: 1;
+    padding: 4rem 6rem;
+}
+
+.header {
+    margin-bottom: 4rem;
+}
+
+.header h1 {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-style: italic;
+    color: var(--text-muted);
+    font-family: var(--font-serif);
+}
+
+.actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.scanBtn,
+.manualBtn {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border-radius: 1px;
+    transition: all 0.3s;
+}
+
+.scanBtn {
+    background: var(--primary);
+    color: white;
+}
+
+.scanBtn:hover {
+    background: var(--primary-light);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.highlightCard {
+    padding: 2.5rem !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    position: relative;
+    overflow: hidden;
+    background: #fdfdfd !important;
+}
+
+.paperTexture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--accent);
+    opacity: 0.3;
+}
+
+.highlightContent {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-style: italic;
+    color: var(--text-main);
+}
+
+.highlightMeta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 2rem;
+}
+
+.bookTitle {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--primary);
+}
+
+.pageInfo {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cardActions {
+    display: flex;
+    gap: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 1.5rem;
+}
+
+.shareBtn,
+.deleteBtn {
+    background: transparent;
+    border: none;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.shareBtn:hover {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.deleteBtn:hover {
+    opacity: 1;
+    color: var(--primary);
+}

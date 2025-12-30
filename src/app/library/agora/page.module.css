@@ -1,0 +1,204 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background-paper);
+}
+
+.sidebar {
+    width: 280px;
+    background-color: var(--background-shelf);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.brand {
+    margin-bottom: 4rem;
+}
+
+.brand h2 {
+    font-size: 2.2rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.25rem;
+}
+
+.brand p {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    opacity: 0.8;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.navItem,
+.navItemActive {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    text-align: left;
+    padding: 0.75rem 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    font-family: var(--font-sans);
+    text-decoration: none;
+}
+
+.navItemActive {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.navItem:hover {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+.content {
+    flex: 1;
+    padding: 4rem 6rem;
+    max-width: 1000px;
+}
+
+.header {
+    margin-bottom: 5rem;
+}
+
+.header h1 {
+    font-size: 3.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-family: var(--font-serif);
+}
+
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.thoughtCard {
+    padding: 3rem !important;
+    border: 1px solid rgba(0, 0, 0, 0.03) !important;
+    background: white !important;
+}
+
+.thoughtHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.userAvatar {
+    width: 32px;
+    height: 32px;
+    background: var(--background-shelf);
+    color: var(--text-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    overflow: hidden;
+}
+
+.avatarFlag {
+    font-size: 1.1rem;
+}
+
+.userName {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.timestamp {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.content_text {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    font-family: var(--font-serif);
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+}
+
+.bookContext {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.bookLink {
+    color: var(--primary);
+    text-decoration: none;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.thoughtFooter {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 2rem;
+}
+
+.likeBtn,
+.discussBtn {
+    background: transparent;
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s;
+}
+
+.likeBtn:hover {
+    color: var(--primary);
+}
+
+.discussBtn:hover {
+    color: var(--accent);
+}
+
+.heart {
+    color: #ddd;
+}
+
+.likeBtn:hover .heart {
+    color: var(--primary);
+}

@@ -1,0 +1,231 @@
+.container {
+    min-height: 100vh;
+    background-color: var(--background-paper);
+}
+
+.pollinationSection {
+    margin: 4rem 0;
+    padding-top: 4rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.pollinationSection h3 {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+.pollinationGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.pollinationCard {
+    padding: 2rem !important;
+    background: white !important;
+    border: 1px solid rgba(0, 0, 0, 0.02) !important;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.pollinationCard:hover {
+    border-color: var(--accent) !important;
+    transform: translateY(-2px);
+}
+
+.pollinationCard h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+}
+
+.pollinationCard p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.activeLabel {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.viewToggle {
+    display: flex;
+    gap: 1rem;
+}
+
+.modeBtn,
+.modeBtnActive {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modeBtnActive {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.header {
+    padding: 3rem 4rem;
+    background-color: var(--background-shelf);
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.backBtn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    border-radius: 1px;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.backBtn:hover {
+    opacity: 1;
+    border-color: var(--accent);
+}
+
+.main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+}
+
+.commentFormArea {
+    margin-top: 6rem;
+    padding: 4rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.commentFormArea h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+    color: var(--primary);
+    font-weight: 400;
+}
+
+.pageNote {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 0;
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    outline: none;
+    resize: none;
+    background-color: transparent;
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+.textarea:focus {
+    border-color: var(--primary);
+}
+
+.submitBtn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 2.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    border-radius: 1px;
+    align-self: flex-start;
+    transition: all 0.3s ease;
+}
+
+.submitBtn:hover {
+    background: var(--primary-light);
+    transform: translateY(-1px);
+}
+
+.insightSection {
+    margin-bottom: 5rem;
+}
+
+.insightHeader {
+    margin-bottom: 2rem;
+}
+
+.oracleBadge {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.insightCard {
+    padding: 2.5rem !important;
+    background-color: var(--background-shelf) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.insightText {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    font-family: var(--font-serif);
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.insightMeta {
+    display: flex;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.5rem;
+}
+
+.tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    opacity: 0.8;
+}

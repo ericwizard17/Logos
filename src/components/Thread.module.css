@@ -1,0 +1,101 @@
+.threadContainer {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.header {
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.progressInfo {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.commentList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.commentCard {
+    padding: 1.5rem !important;
+    border-left: 4px solid var(--accent) !important;
+}
+
+.commentMeta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.userWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.flag {
+    font-size: 1.1rem;
+}
+
+.username {
+    font-weight: 600;
+}
+
+.verifiedBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    background: var(--accent);
+    color: white;
+    font-size: 8px;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+}
+
+.pageTag {
+    font-size: 0.8rem;
+    background: var(--accent);
+    color: var(--primary);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+}
+
+.commentText {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-main);
+}
+
+.time {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.spoilerWarning {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--background-shelf);
+    color: var(--text-light);
+    border-radius: var(--radius-md);
+    text-align: center;
+    border: 1px dashed var(--accent);
+}
+
+.spoilerWarning p {
+    font-style: italic;
+    opacity: 0.8;
+}

@@ -1,0 +1,88 @@
+.wrapper {
+    position: relative;
+    z-index: 1000;
+}
+
+.bellBtn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--accent);
+    color: white;
+    font-size: 0.6rem;
+    padding: 2px 5px;
+    border-radius: 10px;
+    font-family: var(--font-sans);
+}
+
+.panel {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 300px;
+    background: white;
+    box-shadow: var(--shadow-deep);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+}
+
+.panelHeader {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background: var(--background-shelf);
+    color: var(--text-light);
+}
+
+.list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.item {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.02);
+    transition: background 0.3s;
+}
+
+.item:hover {
+    background: #fdfdfd;
+}
+
+.itemHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.typeTag {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.time {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+}
+
+.item h5 {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    color: var(--primary);
+}
+
+.item p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
