@@ -28,11 +28,6 @@ export default function DiscussPage() {
     const [userFlag, setUserFlag] = useState('Ω');
     const [viewMode, setViewMode] = useState<'flow' | 'chapter'>('flow');
     const [loading, setLoading] = useState(true);
-    const [bookAuthors, setBookAuthors] = useState('');
-    const [totalPages, setTotalPages] = useState(0);
-    const [fullSummary, setFullSummary] = useState('');
-    const [progressSummary, setProgressSummary] = useState('');
-    const [loadingSummary, setLoadingSummary] = useState(false);
 
     // Fetch user profile and book data
     useEffect(() => {
@@ -59,11 +54,6 @@ export default function DiscussPage() {
             if (book) {
                 setBookTitle(book.book_title);
                 setUserPage(book.current_page);
-                setBookAuthors(book.authors || 'Unknown Author');
-                setTotalPages(book.page_count || 0);
-
-                // Generate AI summaries
-                generateSummaries(book.book_title, book.authors, book.current_page, book.page_count);
             }
 
             // Fetch discussions for this book
