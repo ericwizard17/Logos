@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 import { useLanguage } from '@/context/LanguageContext';
 import { useAuth } from '@/context/AuthContext';
+import { supabase } from '@/lib/supabase';
+import { ReadingHeatmap } from '@/components/ReadingHeatmap';
 
 interface LibraryBook {
     id: string;
@@ -44,20 +46,46 @@ export default function ProfilePage() {
     const router = useRouter();
 
     useEffect(() => {
-        const savedLibrary = localStorage.getItem('logos_library');
-        if (savedLibrary) {
-            setBooks(JSON.parse(savedLibrary));
-        }
+        const fetchData = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
 
-        const auth = localStorage.getItem('logos_auth');
-        if (auth) {
-            try {
-                const parsedAuth = JSON.parse(auth);
-                if (parsedAuth && typeof parsedAuth === 'object') {
-                    setUserData(parsedAuth);
+            if (user) {
+                // Fetch profile
+                const { data: profile } = await supabase
+                    .from('profiles')
+                    .select('*')
+                    .eq('id', user.id)
+                    .single();
+
+                if (profile) {
+                    setUserData({
+                        authenticated: true,
+                        countryCode: profile.country_code,
+                        countryName: profile.country_name,
+                        flag: profile.flag,
+                        accessLevel: profile.access_level,
+                        isPremium: profile.is_premium
+                    });
                 }
-            } catch (e) { }
-        }
+
+                // Fetch books
+                const { data: userBooks } = await supabase
+                    .from('user_books')
+                    .select('*')
+                    .eq('user_id', user.id);
+
+                if (userBooks) {
+                    setBooks(userBooks.map(b => ({
+                        id: b.id,
+                        title: b.book_title,
+                        pageCount: b.page_count,
+                        currentPage: b.current_page
+                    })));
+                }
+            }
+        };
+
+        fetchData();
     }, []);
 
     const handleLogout = async () => {
@@ -166,6 +194,11 @@ export default function ProfilePage() {
                         <h3 className="serif">Mastery</h3>
                         <p className={styles.statValue}>{completionRate}%</p>
                     </div>
+                </section>
+
+                <section className={styles.heatmapSection}>
+                    <h3 className="serif">{t('reading_consistency')}</h3>
+                    <ReadingHeatmap />
                 </section>
 
                 {/* Like-minded Matching Section */}

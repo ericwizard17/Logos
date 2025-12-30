@@ -66,6 +66,7 @@ export const translations: Record<string, any> = {
         conflict_tag: '#Çatışma: Bireysellik vs. Kolektivizm',
         scholars_debating: 'Alim tartışıyor',
         book_not_found: 'Kitap bulunamadı. Lütfen kütüphanenize dönün.',
+        reading_consistency: 'Entelektüel Tutarlılık',
     },
     en: {
         nav_shelf: 'My Shelf',
@@ -134,6 +135,7 @@ export const translations: Record<string, any> = {
         conflict_tag: '#Conflict: Individualism vs. Collectivism',
         scholars_debating: 'Scholars debating',
         book_not_found: 'Book not found. Please return to your shelf.',
+        reading_consistency: 'Intellectual Consistency',
     },
     grc: {
         nav_shelf: 'Βιβλιοθήκη',

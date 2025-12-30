@@ -114,12 +114,21 @@ export default function LibraryPage() {
         if (!book) return;
 
         const newPage = Math.min(page, book.pageCount);
+        const pagesRead = newPage - book.currentPage;
 
         // Update in Supabase
         await supabase
             .from('user_books')
             .update({ current_page: newPage })
             .eq('id', supabaseId);
+
+        // Log reading activity for Heatmap
+        if (pagesRead > 0) {
+            await supabase.rpc('log_reading_activity', {
+                p_book_id: supabaseId,
+                p_pages_read: pagesRead
+            });
+        }
 
         // Update local state
         const newBooks = myBooks.map(b =>
