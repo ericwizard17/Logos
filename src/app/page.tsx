@@ -7,6 +7,7 @@ import { Thread } from "@/components/Thread";
 import { Marginalia } from "@/components/Marginalia";
 import { useLanguage } from "@/context/LanguageContext";
 import { Particles } from "@/components/Particles";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 const DUMMY_COMMENTS = [
   { id: "1", user: "Socrates", text: "The unexamined life is not worth living. How does this apply to the protagonist's struggle in Chapter 1?", page: 12, timestamp: "2 hours ago" },
@@ -22,6 +23,9 @@ export default function Home() {
       <Particles />
       {/* Hero Section */}
       <section className={styles.hero}>
+        <div className={styles.langWrapper}>
+          <LanguageSwitcher />
+        </div>
         <div className={styles.heroBackground}>
           <Image
             src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80"

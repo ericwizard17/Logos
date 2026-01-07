@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
+  /* Removed solid background to show particles */
 }
 
 .heroBackground {
@@ -63,6 +63,13 @@
   display: flex;
   gap: 1.5rem;
   justify-content: center;
+}
+
+.langWrapper {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 100;
 }
 
 .primaryBtn,

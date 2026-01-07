@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './Thread.module.css';
+import { sanitizeText, escapeHtml } from '@/lib/sanitize';
 
 export interface Comment {
     id: string;
@@ -18,13 +19,19 @@ interface ThreadProps {
 }
 
 export const Thread: React.FC<ThreadProps> = ({ bookTitle, userCurrentPage, comments }) => {
-    const visibleComments = comments.filter(c => c.page <= userCurrentPage);
+    const visibleComments = useMemo(() => 
+        comments.filter(c => c.page <= userCurrentPage),
+        [comments, userCurrentPage]
+    );
     const hiddenCount = comments.length - visibleComments.length;
+
+    // Sanitize book title for display
+    const safeBookTitle = useMemo(() => escapeHtml(bookTitle), [bookTitle]);
 
     return (
         <div className={styles.threadContainer}>
             <header className={styles.header}>
-                <h2 className="serif">Discussion: {bookTitle}</h2>
+                <h2 className="serif">Discussion: {safeBookTitle}</h2>
                 <div className={styles.progressInfo}>
                     You are at <span className="gold-accent">Page {userCurrentPage}</span>
                 </div>
@@ -36,13 +43,13 @@ export const Thread: React.FC<ThreadProps> = ({ bookTitle, userCurrentPage, comm
                         <div className={styles.commentMeta}>
                             <div className={styles.userWrapper}>
                                 {comment.countryFlag && <span className={styles.flag}>{comment.countryFlag}</span>}
-                                <span className={styles.username}>{comment.user}</span>
+                                <span className={styles.username}>{sanitizeText(comment.user)}</span>
                                 {comment.isVerified && <span className={styles.verifiedBadge} title="Verified Scholar">✓</span>}
                             </div>
                             <span className={styles.pageTag}>Page {comment.page}</span>
                         </div>
-                        <p className={styles.commentText}>{comment.text}</p>
-                        <span className={styles.time}>{comment.timestamp}</span>
+                        <p className={styles.commentText}>{sanitizeText(comment.text)}</p>
+                        <span className={styles.time}>{escapeHtml(comment.timestamp)}</span>
                     </div>
                 ))}
             </div>

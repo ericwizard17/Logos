@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { searchBooks, Book } from '@/lib/books';
 import styles from './page.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,156 +11,106 @@ import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { Notifications } from '@/components/Notifications';
 import { useAuth } from '@/context/AuthContext';
-import { supabase } from '@/lib/supabase';
-
-interface UserBook extends Book {
-    currentPage: number;
-    supabaseId?: string;
-}
+import { useToast } from '@/components/Toast';
+import { 
+    useUserBooks, 
+    useBookSearch, 
+    useAddBook, 
+    useUpdateProgress, 
+    useToggleCompletion 
+} from '@/hooks/useBooks';
+import { sanitizeSearchQuery } from '@/lib/sanitize';
+import type { Book } from '@/types';
 
 export default function LibraryPage() {
     const { t } = useLanguage();
     const { user } = useAuth();
-    const [searchQuery, setSearchQuery] = useState('');
-    const [searchResults, setSearchResults] = useState<Book[]>([]);
-    const [myBooks, setMyBooks] = useState<UserBook[]>([]);
-    const [isSearching, setIsSearching] = useState(false);
-    const [loading, setLoading] = useState(true);
     const router = useRouter();
     const pathname = usePathname();
+    const { showError, showSuccess } = useToast();
+    
+    // Local state
+    const [searchQuery, setSearchQuery] = useState('');
+    const [isSearchEnabled, setIsSearchEnabled] = useState(false);
 
-    // Fetch user's books from Supabase
-    useEffect(() => {
-        const fetchBooks = async () => {
-            if (!user) {
-                setLoading(false);
-                return;
-            }
+    // React Query hooks
+    const { data: myBooks = [], isLoading, error: booksError } = useUserBooks();
+    const { data: searchResults = [], isFetching: isSearching } = useBookSearch(
+        searchQuery, 
+        isSearchEnabled && searchQuery.length > 0
+    );
+    
+    // Mutations
+    const addBookMutation = useAddBook();
+    const updateProgressMutation = useUpdateProgress();
+    const toggleCompletionMutation = useToggleCompletion();
 
-            const { data, error } = await supabase
-                .from('user_books')
-                .select('*')
-                .eq('user_id', user.id)
-                .order('created_at', { ascending: false });
-
-            if (data && !error) {
-                const formattedBooks: UserBook[] = data.map(book => ({
-                    id: book.id,
-                    title: book.book_title,
-                    authors: book.authors ? [book.authors] : [],
-                    pageCount: book.page_count,
-                    thumbnail: book.thumbnail || '',
-                    currentPage: book.current_page,
-                    supabaseId: book.id,
-                }));
-                setMyBooks(formattedBooks);
-            }
-            setLoading(false);
-        };
-
-        fetchBooks();
-    }, [user]);
-
-    const handleSearch = async (e: React.FormEvent) => {
+    // Handle search
+    const handleSearch = useCallback((e: React.FormEvent) => {
         e.preventDefault();
-        if (!searchQuery) return;
-        setIsSearching(true);
-        const results = await searchBooks(searchQuery);
-        setSearchResults(results);
-        setIsSearching(false);
-    };
+        const sanitized = sanitizeSearchQuery(searchQuery);
+        if (!sanitized) return;
+        setIsSearchEnabled(true);
+    }, [searchQuery]);
 
-    const addToLibrary = async (book: Book) => {
+    // Handle adding book to library
+    const handleAddToLibrary = useCallback(async (book: Book) => {
         if (!user) return;
 
         // Check if book already exists
-        if (myBooks.find(b => b.title === book.title)) return;
+        if (myBooks.find(b => b.title === book.title)) {
+            showError('Bu kitap zaten kütüphanenizde.');
+            return;
+        }
 
-        // Insert into Supabase
-        const { data, error } = await supabase
-            .from('user_books')
-            .insert({
-                user_id: user.id,
-                book_title: book.title,
-                authors: book.authors.join(', '),
-                page_count: book.pageCount,
-                current_page: 0,
-                thumbnail: book.thumbnail,
-            })
-            .select()
-            .single();
-
-        if (data && !error) {
-            const newBook: UserBook = {
-                id: data.id,
-                title: data.book_title,
-                authors: data.authors ? [data.authors] : [],
-                pageCount: data.page_count,
-                thumbnail: data.thumbnail || '',
-                currentPage: 0,
-                supabaseId: data.id,
-            };
-            setMyBooks([newBook, ...myBooks]);
-            setSearchResults([]);
+        try {
+            await addBookMutation.mutateAsync(book);
+            showSuccess('Kitap kütüphanenize eklendi!');
             setSearchQuery('');
+            setIsSearchEnabled(false);
+        } catch (err) {
+            showError('Kitap eklenirken bir hata oluştu.');
         }
-    };
+    }, [user, myBooks, addBookMutation, showError, showSuccess]);
 
-    const updateProgress = async (supabaseId: string, page: number) => {
+    // Handle progress update with debounce
+    const handleUpdateProgress = useCallback(async (supabaseId: string, page: number, totalPages: number) => {
         if (!user) return;
 
-        const book = myBooks.find(b => b.supabaseId === supabaseId);
-        if (!book) return;
-
-        const newPage = Math.min(page, book.pageCount);
-        const pagesRead = newPage - book.currentPage;
-
-        // Update in Supabase
-        await supabase
-            .from('user_books')
-            .update({ current_page: newPage })
-            .eq('id', supabaseId);
-
-        // Log reading activity for Heatmap
-        if (pagesRead > 0) {
-            await supabase.rpc('log_reading_activity', {
-                p_book_id: supabaseId,
-                p_pages_read: pagesRead
+        try {
+            await updateProgressMutation.mutateAsync({
+                bookId: supabaseId,
+                currentPage: page,
+                totalPages,
             });
+        } catch (err) {
+            showError('İlerleme güncellenirken bir hata oluştu.');
         }
+    }, [user, updateProgressMutation, showError]);
 
-        // Update local state
-        const newBooks = myBooks.map(b =>
-            b.supabaseId === supabaseId ? { ...b, currentPage: newPage } : b
-        );
-        setMyBooks(newBooks);
-    };
-
-    const toggleComplete = async (supabaseId: string) => {
+    // Handle completion toggle
+    const handleToggleComplete = useCallback(async (supabaseId: string) => {
         if (!user) return;
 
-        const book = myBooks.find(b => b.supabaseId === supabaseId);
-        if (!book) return;
+        try {
+            await toggleCompletionMutation.mutateAsync(supabaseId);
+        } catch (err) {
+            showError('Durum güncellenirken bir hata oluştu.');
+        }
+    }, [user, toggleCompletionMutation, showError]);
 
-        const newCompletedStatus = !(book as any).isCompleted;
+    // Show error toast if books fail to load
+    if (booksError) {
+        showError('Kitaplar yüklenirken bir hata oluştu.');
+    }
 
-        // Update in Supabase
-        await supabase
-            .from('user_books')
-            .update({ is_completed: newCompletedStatus })
-            .eq('id', supabaseId);
-
-        // Update local state
-        const newBooks = myBooks.map(b =>
-            b.supabaseId === supabaseId ? { ...b, isCompleted: newCompletedStatus } as any : b
-        );
-        setMyBooks(newBooks);
-    };
-
-    if (loading) {
+    if (isLoading) {
         return (
             <div className={styles.container}>
-                <p>{t('loading_library')}</p>
+                <div className={styles.loadingContainer}>
+                    <div className={styles.spinner} />
+                    <p>{t('loading_library')}</p>
+                </div>
             </div>
         );
     }
@@ -206,18 +155,22 @@ export default function LibraryPage() {
                 </div>
 
                 {/* Search Bar */}
-                <div className={styles.searchBar}>
+                <form onSubmit={handleSearch} className={styles.searchBar}>
                     <input
                         type="text"
                         placeholder={t('search_placeholder')}
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={(e) => {
+                            setSearchQuery(e.target.value);
+                            setIsSearchEnabled(false);
+                        }}
                         className={styles.searchInput}
+                        maxLength={200}
                     />
-                    <button type="submit" className={styles.searchBtn} disabled={isSearching}>
+                    <button type="submit" className={styles.searchBtn} disabled={isSearching || !searchQuery.trim()}>
                         {isSearching ? t('seeking') : t('seek_button')}
                     </button>
-                </div>
+                </form>
 
                 {/* Search Results */}
                 {searchResults.length > 0 && (
@@ -227,15 +180,26 @@ export default function LibraryPage() {
                             {searchResults.map(book => (
                                 <div key={book.id} className={`${styles.resultCard} card`}>
                                     {book.thumbnail && (
-                                        <Image src={book.thumbnail} alt={book.title} width={80} height={120} className={styles.thumbnail} />
+                                        <Image 
+                                            src={book.thumbnail} 
+                                            alt={book.title} 
+                                            width={80} 
+                                            height={120} 
+                                            className={styles.thumbnail}
+                                            unoptimized
+                                        />
                                     )}
                                     <div className={styles.bookInfo}>
                                         <h4 className="serif">{book.title}</h4>
                                         <p className={styles.authors}>{book.authors.join(', ')}</p>
                                         <p className={styles.pages}>{book.pageCount} {t('pages_count')}</p>
                                     </div>
-                                    <button onClick={() => addToLibrary(book)} className={styles.addBtn}>
-                                        {t('add_to_shelf')}
+                                    <button 
+                                        onClick={() => handleAddToLibrary(book)} 
+                                        className={styles.addBtn}
+                                        disabled={addBookMutation.isPending}
+                                    >
+                                        {addBookMutation.isPending ? '...' : t('add_to_shelf')}
                                     </button>
                                 </div>
                             ))}
@@ -253,12 +217,19 @@ export default function LibraryPage() {
                         myBooks.map(book => (
                             <div key={book.supabaseId} className={`${styles.bookCard} card`}>
                                 {book.thumbnail && (
-                                    <Image src={book.thumbnail} alt={book.title} width={120} height={180} className={styles.cover} />
+                                    <Image 
+                                        src={book.thumbnail} 
+                                        alt={book.title} 
+                                        width={120} 
+                                        height={180} 
+                                        className={styles.cover}
+                                        unoptimized
+                                    />
                                 )}
                                 <div className={styles.cardContent}>
                                     <h3 className="serif">
                                         {book.title}
-                                        {(book as any).isCompleted && (
+                                        {book.isCompleted && (
                                             <span className={styles.completedBadge}>{t('completed_badge')}</span>
                                         )}
                                     </h3>
@@ -270,20 +241,36 @@ export default function LibraryPage() {
                                             min="0"
                                             max={book.pageCount}
                                             value={book.currentPage}
-                                            onChange={(e) => updateProgress(book.supabaseId!, parseInt(e.target.value))}
+                                            onChange={(e) => handleUpdateProgress(
+                                                book.supabaseId, 
+                                                parseInt(e.target.value) || 0,
+                                                book.pageCount
+                                            )}
                                             className={styles.pageInput}
                                         />
                                         <span>/ {book.pageCount}</span>
                                     </div>
+                                    <div className={styles.progressBar}>
+                                        <div 
+                                            className={styles.progressFill} 
+                                            style={{ 
+                                                width: `${book.pageCount > 0 ? (book.currentPage / book.pageCount) * 100 : 0}%` 
+                                            }} 
+                                        />
+                                    </div>
                                     <div className={styles.actions}>
-                                        <button onClick={() => router.push(`/library/discuss/${book.supabaseId}`)} className={styles.discussBtn}>
+                                        <button 
+                                            onClick={() => router.push(`/library/discuss/${book.supabaseId}`)} 
+                                            className={styles.discussBtn}
+                                        >
                                             {t('enter_symposium')}
                                         </button>
                                         <button
-                                            onClick={() => toggleComplete(book.supabaseId!)}
-                                            className={`${styles.completeBtn} ${(book as any).isCompleted ? styles.completeBtnActive : ''}`}
+                                            onClick={() => handleToggleComplete(book.supabaseId)}
+                                            className={`${styles.completeBtn} ${book.isCompleted ? styles.completeBtnActive : ''}`}
+                                            disabled={toggleCompletionMutation.isPending}
                                         >
-                                            {(book as any).isCompleted ? t('mark_completed') : t('mark_complete')}
+                                            {book.isCompleted ? t('mark_completed') : t('mark_complete')}
                                         </button>
                                     </div>
                                 </div>
